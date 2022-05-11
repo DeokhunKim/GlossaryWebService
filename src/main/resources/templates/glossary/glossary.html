@@ -1,0 +1,58 @@
+<!-- https://codemyui.com/sticky-sidebar-navigation-on-scroll -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Glossary</title>
+  <link rel="stylesheet" href="/glossary/css/glossary.css">
+  <!-- <link rel="stylesheet" href="/app/glossary/css/glossary-popup.css"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <link rel="shortcut icon" href="#">
+</head>
+<body>
+
+<header>
+  <div><h2>Glossary Wiki</h2></div>
+
+
+</header>
+
+<nav>
+<ul id="ul">
+  <li><a href="/../glossary/new">+ NEW</a></li>
+  <li><a href="#search">🔍 Search</a></li>
+
+</ul>
+</nav>
+
+<main id="main">
+  <section id="add" style="display: none"></section>
+  <section id="search">
+  <div id="search-bar">
+    <input type="text" placeholder="Input search.." id="searchInput" onkeypress="if( event.keyCode == 13 ){findKeyword();}">
+    <button class="w-btn w-btn-gray" type="button" id="searchBtn" onclick="findKeyword()" >Search</button>
+  </div>
+  </section>
+
+  <div id="documents">
+
+
+
+  </div>
+</main>
+
+<footer>
+  Footer
+</footer>
+
+<span onclick='location.href="/new"' class="popup-tag"></span>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/glossary/js/glossary.js"></script>
+<script type="text/javascript" src="/glossary/js/glossary-popup.js"></script>
+<script type="text/javascript" src="/glossary/js/glossary-document.js"></script>
+
+</body>
+</html>

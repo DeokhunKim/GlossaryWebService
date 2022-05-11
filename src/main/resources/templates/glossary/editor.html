@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link rel="stylesheet" href="/glossary/css/editor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"/>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>
+    <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css"/>
+    <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.css"/>
+</head>
+<body>
+
+<div class="page">
+
+    <div class="title">
+       <!-- <div class="title-text"></div> -->
+        <div class="title-input">
+            <input type="text" placeholder="Title" class="title" th:value="${title}" id="titleInput">
+        </div>
+    </div>
+
+
+
+    <!-- Editor -->
+    <div id="editor"></div>
+    <!-- Viewer Using Editor -->
+
+    <!-- Chart -->
+    <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+    <!-- Editor -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <!-- Editor's Plugin -->
+    <script src="https://uicdn.toast.com/editor-plugin-chart/latest/toastui-editor-plugin-chart.min.js"></script>
+
+    <script src="https://uicdn.toast.com/editor-plugin-uml/latest/toastui-editor-plugin-uml.min.js"></script>
+
+    <br/>
+    <span class="synonym-text">Synonym</span>
+    <br/>
+
+        <input type="text" placeholder="쉼표(,)를 이용하여 복수 등록" class="synonym" id="synonymInput">
+
+    <div style="float: right">
+        <button th:if="${mode == 'new'}" class="w-btn w-btn-green" id="writeBtn">작성</button>
+        <button th:if="${mode == 'edit'}" class="w-btn w-btn-green" id="editBtn">수정</button>
+        <button class="w-btn w-btn-gray" id="cancelBtn">취소</button>
+        <button th:if="${mode == 'edit'}" class="w-btn w-btn-red" id="removeBtn">삭제</button>
+    </div>
+
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/glossary/js/editor.js"></script>
+
+<script th:inline="javascript">
+    let d;
+    window.onload=function(){
+        /*<![CDATA[*/
+        const mode = /*[[ ${mode} ]]*/;
+        const title = /*[[ ${title} ]]*/;
+        /*]]*/
+
+        if (mode == "new") {
+            console.log("new");
+        }else if (mode == "edit") {
+            const document = getDocument(title);
+            $('#titleInput').value = title;
+            $('#titleInput').attr("readonly", true);
+            document.then((doc) => {
+                editor.setHTML(doc.content.contentHtml);
+                $('#synonymInput').attr("value", doc.synonym);
+            });
+
+        } else {
+            console.log("else");
+        }
+    }
+</script>
+
+</body>
+</html>
