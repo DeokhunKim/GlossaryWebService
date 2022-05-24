@@ -29,3 +29,13 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	enabled = false
+}
+
+bootJar{
+	archivesBaseName = 'GlossaryWeb'
+	archiveFileName = 'GlossaryWeb.jar'
+	archiveVersion = "0.0.0"
+}
