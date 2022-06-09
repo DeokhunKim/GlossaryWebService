@@ -1,6 +1,13 @@
-function createNav(title){
+function createNav(title, isEmpty){
     const li = document.createElement('li');
-    const output = "<a href=\"#" + title + "\" id=\"nav-" + title + "\">" + title + "</a>";
+    let output = "<a href=\"#" + title + "\" id=\"nav-" + title + "\">" + title ;
+
+    if (isEmpty) {
+        output += '<span class="material-icons md-14 md-yellow">priority_high</span>'
+    }
+    output += '</a>';
+
+    console.log(output);
     li.innerHTML = output;
     $('#ul').append(li);
 };
@@ -49,7 +56,8 @@ function requestDocument(){
         .then(response => response.json())
         .then(documents => {
             for (doc of documents) {
-                createNav(doc.title);
+                let isEmpty = doc.content.contentHtml == '<p><br></p>' ;
+                createNav(doc.title, isEmpty);
                 createDoc(doc);
             }
         });
